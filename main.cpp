@@ -1,9 +1,10 @@
 #include<iostream>
+#include<cmath>
 using namespace std;
 class Solution {
 public:
     int addDigits(int num) {
-        return (num > 9)?addDigits(num/10+num%10):num;
+        return (num > 0) ? num - 9 * floor((num - 1) / 9) : 0;
     }
 };
 int main() {
