@@ -17,21 +17,15 @@ struct ListNode {
 class Solution {
 public:
     ListNode* reverseList(ListNode* head) {
-        ListNode* p = head;
-        while(!p){
-            list.push_back(p->val);
-            p = p->next;
+        if(!head || !head->next)
+            return head;
+        else {
+            ListNode * end = reverseList(head->next);
+            head->next->next = head;
+            head->next = NULL;
+            return end;
         }
-        p = head;
-        int i = 1,l = list.size();
-        while(!p){
-            p->val = list[l - i];
-            i ++;
-            p = p->next;
-        }
-        return head;
     }
-    vector<int> list;
 };
 int main() {
     return 0;
