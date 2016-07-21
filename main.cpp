@@ -7,23 +7,19 @@ public:
     bool isAnagram(string s, string t) {
         int l1 = s.length(), l2 = t.length();
         if (l1!= l2) return false;
-        vector<char> s1,s2;
-        const char *c1 = s.c_str(), *c2 = t.c_str();
-        for(int i = 0; i < l1; i++) {
-            s1.push_back(c1[i]);
-            s2.push_back(c2[i]);
-        }
-        sort(s1.begin(), s1.end());
-        sort(s2.begin(), s2.end());
+        int h[26] = {0};
         for (int i = 0; i < l1; i++) {
-            if (s1[i] != s2[i])
-                return false;
+            h[s[i]-'a']++;
+            h[t[i]-'a']--;
         }
+        for (int i = 0; i < 26; i++)
+            if(h[i]!=0)
+                return false;
         return true;
     }
 };
 int main() {
     Solution s;
-    cout<<s.isAnagram("cat", "art");
+    cout<<s.isAnagram("nl", "cx");
     return 0;
 }
